@@ -25,7 +25,7 @@ var csrftoken = getCookie('csrftoken');
 
 
 function display_profile(){
-    fetch(`http://127.0.0.1:8000/api/get_profile/${user_id}`).then((resp) => resp.json()).then(function(profile){
+    fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${user_id}`).then((resp) => resp.json()).then(function(profile){
         console.log(profile)
     if(profile.followers.includes(parseInt(my_id))){
         my_container.innerHTML = `
@@ -172,7 +172,7 @@ function display_profile(){
     }
 
 
-        fetch(`http://127.0.0.1:8000/api/list_user_posts/${profile.id}`).then((resp) => resp.json()).then(function(data){
+        fetch(`http://https://prouserr.pythonanywhere.com//api/list_user_posts/${profile.id}`).then((resp) => resp.json()).then(function(data){
             var gallery = document.getElementById('gallery')
             for(var i=0;i<data.length;i++){
                 gallery.innerHTML += `
@@ -199,7 +199,7 @@ function display_profile(){
 }
 
 function follow_user(user_id){
-    fetch(`http://127.0.0.1:8000/api/follow_user/${user_id}`, {
+    fetch(`http://https://prouserr.pythonanywhere.com//api/follow_user/${user_id}`, {
         method:'POST', 
         headers:{
             'Content-type':'application/json',
@@ -210,7 +210,7 @@ function follow_user(user_id){
 }
 
 function unfollow_user(user_id){
-    fetch(`http://127.0.0.1:8000/api/unfollow_user/${user_id}`, {
+    fetch(`http://https://prouserr.pythonanywhere.com//api/unfollow_user/${user_id}`, {
         method:'POST', 
         headers:{
             'Content-type':'application/json',
@@ -224,5 +224,5 @@ if(user_id != my_id){
     display_profile()
 }
 else{
-    window.location.href = 'http://127.0.0.1:8000/my_profile/'
+    window.location.href = 'http://https://prouserr.pythonanywhere.com//my_profile/'
 }

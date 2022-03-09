@@ -24,13 +24,13 @@ register_btn.addEventListener('click', function(){
     password2 = document.getElementById('password-input2').value
 
     if(password1 == password2){
-        fetch(`http://127.0.0.1:8000/api/register_user/`, {
+        fetch(`http://https://prouserr.pythonanywhere.com//api/register_user/`, {
             method:'POST', 
             headers:{
                 'Content-type':'application/json',
                 'X-CSRFToken':csrftoken,
             },
             body:JSON.stringify({'username':username,'password':password1, 'email': email})
-        }).then(window.location.href = "http://127.0.0.1:8000/home")
+        }).then(window.location.href = "http://https://prouserr.pythonanywhere.com//home")
     }
 })

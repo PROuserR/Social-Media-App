@@ -18,7 +18,7 @@ function getCookie(name) {
 }
 var csrftoken = getCookie('csrftoken');
 
-fetch(`http://127.0.0.1:8000/api/discover_posts/`).then((resp) => resp.json()).then(function(posts){
+fetch(`http://https://prouserr.pythonanywhere.com//api/discover_posts/`).then((resp) => resp.json()).then(function(posts){
     for(i in posts){
             gallery = document.getElementById('gallery')
             gallery.innerHTML += `
@@ -42,7 +42,7 @@ fetch(`http://127.0.0.1:8000/api/discover_posts/`).then((resp) => resp.json()).t
 })
 
 function fill_posts(post){
-    fetch(`http://127.0.0.1:8000/api/get_profile/${post.owner}`).then((resp2) => resp2.json()).then(function(profile){
+    fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${post.owner}`).then((resp2) => resp2.json()).then(function(profile){
     now = new Date()
     py_date = new Date(post.date_added)
     delta = time_delta(now, py_date)
@@ -59,10 +59,10 @@ function fill_posts(post){
 
         <div class="social-avatar d-flex align-items-center justify-content-between mb-3">
             <div class="d-flex">
-                <a href="http://127.0.0.1:8000/user_profile/${profile.id}" style="text-decoration: none;">
+                <a href="http://https://prouserr.pythonanywhere.com//user_profile/${profile.id}" style="text-decoration: none;">
                     <img class="rounded-circle" width="30px" src="${profile.image}">
                 </a>
-                <a class="underline" href="http://127.0.0.1:8000/user_profile/${profile.id}">
+                <a class="underline" href="http://https://prouserr.pythonanywhere.com//user_profile/${profile.id}">
                     ${profile.username}
                 </a>
             </div>
@@ -70,7 +70,7 @@ function fill_posts(post){
             <div class="d-inline-flex justify-content-end">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/api/delete_post/${post.id}">Delete post</a></li>
+                    <li><a class="dropdown-item" href="http://https://prouserr.pythonanywhere.com//api/delete_post/${post.id}">Delete post</a></li>
                 </ul>
                 
             </div>
@@ -81,7 +81,7 @@ function fill_posts(post){
         </div>
         <div style="margin-left: 20px;">
             <div class="social-comment">
-            <a class="underline" href="http://127.0.0.1:8000/user_profile/${profile.id}" style="font-weight: bolder;">
+            <a class="underline" href="http://https://prouserr.pythonanywhere.com//user_profile/${profile.id}" style="font-weight: bolder;">
                 ${profile.username}
             </a>
                     ${post.caption}

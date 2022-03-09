@@ -27,7 +27,7 @@ function create_post(){
     formData.append('image', image)
     formData.append('owner', user_id)
 
-    fetch(`http://127.0.0.1:8000/api/create_post/`, {
+    fetch(`http://https://prouserr.pythonanywhere.com//api/create_post/`, {
         method:'POST', 
         headers:{
             'X-CSRFToken':csrftoken,

@@ -25,7 +25,7 @@ var csrftoken = getCookie('csrftoken');
 
 
 function display_profile(){
-    fetch(`http://127.0.0.1:8000/api/get_profile/${user_id}`).then((resp) => resp.json()).then(function(data){
+    fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${user_id}`).then((resp) => resp.json()).then(function(data){
     my_container.innerHTML = `
     <div class="bg-white">
     <header>
@@ -88,7 +88,7 @@ function display_profile(){
 </div>
     `
 
-    fetch(`http://127.0.0.1:8000/api/list_user_posts/${user_id}`).then((resp) => resp.json()).then(function(data){
+    fetch(`http://https://prouserr.pythonanywhere.com//api/list_user_posts/${user_id}`).then((resp) => resp.json()).then(function(data){
     gallery = document.getElementById('gallery')
     for(var i=0;i<data.length;i++){
         gallery.innerHTML += `
@@ -117,7 +117,7 @@ function display_profile(){
 
 
 function display_edit_profile(){
-    fetch(`http://127.0.0.1:8000/api/get_profile/${user_id}`).then((resp) => resp.json()).then(function(data){
+    fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${user_id}`).then((resp) => resp.json()).then(function(data){
         console.log(data)
             my_container.innerHTML = `
             <br>
@@ -401,7 +401,7 @@ function update_user(){
     email = document.getElementById('email_input').value
     username = document.getElementById('username_input').value
 
-    fetch(`http://127.0.0.1:8000/api/update_user/`, {
+    fetch(`http://https://prouserr.pythonanywhere.com//api/update_user/`, {
         method:'POST', 
         headers:{
             'Content-type':'application/json',
@@ -421,7 +421,7 @@ function update_profile(){
     formData.append('user', user_id)
 
 
-    fetch(`http://127.0.0.1:8000/api/update_profile/`, {
+    fetch(`http://https://prouserr.pythonanywhere.com//api/update_profile/`, {
         method:'POST', 
         headers:{
             'X-CSRFToken':csrftoken,
@@ -446,7 +446,7 @@ function create_profile(){
     formData.append('image', image)
     formData.append('user', user_id)
 
-    fetch(`http://127.0.0.1:8000/api/create_profile/`, {
+    fetch(`http://https://prouserr.pythonanywhere.com//api/create_profile/`, {
         method:'POST', 
         headers:{
             'X-CSRFToken':csrftoken,
@@ -463,7 +463,7 @@ function update_password(){
     console.log(newpassword1)
 
     if(newpassword1==newpassword2){
-        fetch(`http://127.0.0.1:8000/api/update_password/`, {
+        fetch(`http://https://prouserr.pythonanywhere.com//api/update_password/`, {
             method:'POST', 
             headers:{
                 'Content-type':'application/json',
@@ -475,13 +475,13 @@ function update_password(){
 
 
 function logout(){
-    fetch(`http://127.0.0.1:8000/api/logout_user`).then(function(){window.location.reload()})
+    fetch(`http://https://prouserr.pythonanywhere.com//api/logout_user`).then(function(){window.location.reload()})
     
 }
 
 
 function show_login_activity(user_id){
-    fetch(`http://127.0.0.1:8000/api/get_profile/${user_id}`).then((resp) => resp.json()).then(function(data){
+    fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${user_id}`).then((resp) => resp.json()).then(function(data){
         if(show_login_activity_flag){
             date_joined = new Date(data.date_joined).toDateString()
             last_login = new Date(data.last_login).toDateString()
