@@ -4,6 +4,7 @@ from .views import *
 
 app_name = 'frontend'
 urlpatterns = [
+    path('', redirect_home, name='redirect_home'),
     path('home/', home, name='home'),
     path('create_post/', create_post, name='create_post'),
     path('discover/', discover, name='discover'),
