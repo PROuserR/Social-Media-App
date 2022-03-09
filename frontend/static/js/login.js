@@ -21,7 +21,7 @@ login_btn.addEventListener('click', function(){
     username = document.getElementById('username-input').value
     password = document.getElementById('password-input').value
 
-    fetch(`http://https://prouserr.pythonanywhere.com//api/login_user/`, {
+    fetch(`https://prouserr.pythonanywhere.com/api/login_user/`, {
         method:'POST', 
         headers:{
             'Content-type':'application/json',
@@ -30,7 +30,7 @@ login_btn.addEventListener('click', function(){
         body:JSON.stringify({'username':username,'password':password})
     }).then(resp => resp.json()).then(function(data){
         if(data=='Auth success')
-        window.location.href = `http://https://prouserr.pythonanywhere.com//home/`
+        window.location.href = `https://prouserr.pythonanywhere.com/home/`
     })
     
 })

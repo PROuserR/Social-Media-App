@@ -26,12 +26,12 @@ var csrftoken = getCookie('csrftoken');
 
 function news_feed(){
     my_container.innerHTML = ``
-    fetch(`http://https://prouserr.pythonanywhere.com//api/news_feed/`).then((resp) => resp.json()).then(function(posts){
+    fetch(`https://prouserr.pythonanywhere.com/api/news_feed/`).then((resp) => resp.json()).then(function(posts){
         
         posts.forEach(fill_posts)
 
         function fill_posts(post){
-            fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${post.owner}`).then((resp2) => resp2.json()).then(function(profile){
+            fetch(`https://prouserr.pythonanywhere.com/api/get_profile/${post.owner}`).then((resp2) => resp2.json()).then(function(profile){
             now = new Date()
             py_date = new Date(post.date_added)
             delta = time_delta(now, py_date)
@@ -48,11 +48,11 @@ function news_feed(){
 
             <div class="social-avatar d-flex align-items-center justify-content-between mb-3">
                 <div>
-                    <a href="http://https://prouserr.pythonanywhere.com//user_profile/${profile.id}" style="text-decoration: none;">
+                    <a href="https://prouserr.pythonanywhere.com/user_profile/${profile.id}" style="text-decoration: none;">
                     <img class="rounded-circle" width="30px" src="${profile.image}">
                     </a>
 
-                    <a class="underline" href="http://https://prouserr.pythonanywhere.com//user_profile/${profile.id}">
+                    <a class="underline" href="https://prouserr.pythonanywhere.com/user_profile/${profile.id}">
                         ${profile.username}
                     </a>
                 </div>
@@ -61,7 +61,7 @@ function news_feed(){
                 <div class="d-inline-flex justify-content-end">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="http://https://prouserr.pythonanywhere.com//api/delete_post/${post.id}">Delete post</a></li>
+                        <li><a class="dropdown-item" href="https://prouserr.pythonanywhere.com/api/delete_post/${post.id}">Delete post</a></li>
                     </ul>
                 </div>
             </div>
@@ -78,7 +78,7 @@ function news_feed(){
                 <span id="likes_${post.id}">${post.likes.length}</span> likes
                 <br>
 
-                <a class="underline" href="http://https://prouserr.pythonanywhere.com//user_profile/${profile.id}" style="font-weight: bolder;">
+                <a class="underline" href="https://prouserr.pythonanywhere.com/user_profile/${profile.id}" style="font-weight: bolder;">
                     ${profile.username}
                 </a>
                         ${post.caption}
@@ -118,7 +118,7 @@ function news_feed(){
 
 function add_comment(post_id){
     comment = document.getElementById(`comment-input-${post_id}`).value
-    fetch(`http://https://prouserr.pythonanywhere.com//api/add_comment/${post_id}`, {
+    fetch(`https://prouserr.pythonanywhere.com/api/add_comment/${post_id}`, {
         method:'POST', 
         headers:{
             'Content-type':'application/json',
@@ -141,7 +141,7 @@ function add_like(like_id, post_id){
 
 
     if(like_flag){
-        fetch(`http://https://prouserr.pythonanywhere.com//api/add_like/${post_id}`, {
+        fetch(`https://prouserr.pythonanywhere.com/api/add_like/${post_id}`, {
             method:'POST', 
             headers:{
                 'Content-type':'application/json',
@@ -154,7 +154,7 @@ function add_like(like_id, post_id){
     }
     else
     {   
-        fetch(`http://https://prouserr.pythonanywhere.com//api/delete_like/${like_id}`, {
+        fetch(`https://prouserr.pythonanywhere.com/api/delete_like/${like_id}`, {
             method:'DELETE', 
             headers:{
                 'Content-type':'application/json',
@@ -170,14 +170,14 @@ function add_like(like_id, post_id){
 
 
 function get_comments(post_id){
-    fetch(`http://https://prouserr.pythonanywhere.com//api/get_comments/${post_id}`).then((resp) => resp.json()).then(function(comments){
+    fetch(`https://prouserr.pythonanywhere.com/api/get_comments/${post_id}`).then((resp) => resp.json()).then(function(comments){
         comments.forEach(fill_comments)
 
         function fill_comments(comment){
             comments_body = document.getElementById(`comments-${post_id}`)
             comments_body.innerHTML = ``
 
-            fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${comment.commenter_id}`).then((resp) => resp.json()).then(function(user){
+            fetch(`https://prouserr.pythonanywhere.com/api/get_profile/${comment.commenter_id}`).then((resp) => resp.json()).then(function(user){
                     comments_body.innerHTML += `${user.username}: ${comment.content} <br>`
             })
                 

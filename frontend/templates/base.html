@@ -91,20 +91,20 @@
 
   <script>
     function search_result(){
-      fetch('http://https://prouserr.pythonanywhere.com//api/list_users').then((resp) => resp.json()).then(function(users){
+      fetch('https://prouserr.pythonanywhere.com/api/list_users').then((resp) => resp.json()).then(function(users){
         search_query = document.getElementById('search-input').value
         users_modal = document.getElementById('users-modal')
         users_modal.innerHTML = ''
         for(i in users){
           if(users[i].username.includes(search_query)){
-            fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${users[i].id}`).then((resp) => resp.json()).then(function(profile){
+            fetch(`https://prouserr.pythonanywhere.com/api/get_profile/${users[i].id}`).then((resp) => resp.json()).then(function(profile){
               users_modal.innerHTML += `
               <div>
-                      <a href="http://https://prouserr.pythonanywhere.com//user_profile/${profile.id}" style="text-decoration: none;">
+                      <a href="https://prouserr.pythonanywhere.com/user_profile/${profile.id}" style="text-decoration: none;">
                       <img class="rounded-cirlce" width="30px" src="${profile.image}">
                       </a>
 
-                      <a class="underline" href="http://https://prouserr.pythonanywhere.com//user_profile/${profile.id}">
+                      <a class="underline" href="https://prouserr.pythonanywhere.com/user_profile/${profile.id}">
                           ${profile.username}
                       </a>
               </div>

@@ -27,7 +27,7 @@ var messages_len = 0
 var sender_id2 = 0
 var send_flag = false
 
-fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${my_id}`).then((resp) => resp.json()).then(function(profile){
+fetch(`https://prouserr.pythonanywhere.com/api/get_profile/${my_id}`).then((resp) => resp.json()).then(function(profile){
     my_container.innerHTML = `    
     <div class="container py-5 px-4">
     <!-- For demo purpose-->
@@ -57,7 +57,7 @@ fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${my_id}`).th
     `
     messages_box = document.getElementById('messages-box')
     for(following_user in profile.following){
-        fetch(`http://https://prouserr.pythonanywhere.com//api/get_profile/${profile.following[following_user]}`).then((resp) => resp.json()).then(function(following_profile){
+        fetch(`https://prouserr.pythonanywhere.com/api/get_profile/${profile.following[following_user]}`).then((resp) => resp.json()).then(function(following_profile){
 
         messages_box.innerHTML += `
         <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0" onclick="fill_messages(${following_profile.user})">
@@ -82,7 +82,7 @@ function fill_messages(sender_id){
     </div>
     `
 
-    fetch(`http://https://prouserr.pythonanywhere.com//api/list_messages/${sender_id}`).then((resp) => resp.json()).then(function(messages){
+    fetch(`https://prouserr.pythonanywhere.com/api/list_messages/${sender_id}`).then((resp) => resp.json()).then(function(messages){
       messages_len = messages.length
         for(i in messages){
           console.log(messages[i])
@@ -136,7 +136,7 @@ function fill_messages(sender_id){
 }
 
 function send_message(recevier_id, message){
-    fetch(`http://https://prouserr.pythonanywhere.com//api/add_message/`, {
+    fetch(`https://prouserr.pythonanywhere.com/api/add_message/`, {
         method:'POST', 
         headers:{
             'Content-type':'application/json',
@@ -184,7 +184,7 @@ function time_delta(date1, date2){
 }
 
 var intervalId = window.setInterval(function(){
-    fetch(`http://https://prouserr.pythonanywhere.com//api/list_messages/${sender_id2}`).then((resp) => resp.json()).then(function(messages){
+    fetch(`https://prouserr.pythonanywhere.com/api/list_messages/${sender_id2}`).then((resp) => resp.json()).then(function(messages){
       if(messages_len != messages.length){
         if(parseInt(my_id) != messages.slice(-1)[0].sender){
           chats_container = document.getElementById('chats-container')
