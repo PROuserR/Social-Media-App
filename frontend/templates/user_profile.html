@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+    <input type="hidden" id="user_id" value="{{user_id}}">
+    <div id="my_container" style="width: 60%;margin-left: 20%;">
+
+    </div>
+
+    <link rel="stylesheet" href="{% static 'css/user_profile.css'%}">
+    <script src="{% static 'js/user_profile.js' %}"></script>
+{% endblock content %}

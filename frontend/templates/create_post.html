@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+    <script src="{% static 'js/create_post.js' %}"></script>
+    <input type="hidden" id="password" value="{{request.user.password}}">
+    <div class="bg-white" style="width: 50%;margin-left: 25%;">
+        <h1 style="text-align: center;">Create new post:</h1>
+        <div class="container">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Enter caption:</label>
+              <input type="email" class="form-control" id="caption_input" aria-describedby="emailHelp">
+            </div>
+            <div>
+            <label for="formFileLg" class="form-label">Select an image:</label>
+                <input class="form-control form-control-lg" id="image_input" type="file">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary" onclick="create_post()">Submit</button>
+          </div>
+          <br>
+    </div>
+{% endblock content %}

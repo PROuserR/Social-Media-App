@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    {% load static %}
+
+    <div style="width: 50%;margin-left: 25%;">
+        <div class="card card0">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <div class="card card1">
+                    <div class="row justify-content-center my-auto">
+                        <div class="col-md-8 col-10 my-5">
+                            <h3 class="mb-5 text-center heading">Welcome user</h3>
+                            <h6 class="msg-info">Please Register to make a new account</h6>
+                            <div class="form-group"> <label class="form-control-label text-muted">Username</label> <input type="text" id="username-input" placeholder="Username" class="form-control"> </div>
+                            <div class="form-group"> <label class="form-control-label text-muted">Email</label> <input type="text" id="email-input" placeholder="Email" class="form-control"> </div>
+
+                            <div class="form-group"> <label class="form-control-label text-muted">Password</label> <input type="password" placeholder="Password" id="password-input1" class="form-control"> </div>
+                            <div class="form-group"> <label class="form-control-label text-muted">Type in the password again to confirm</label> <input type="password" id="password-input2" placeholder="Password" class="form-control"> </div>
+
+                            <div class="row justify-content-center my-3 px-3"> <button id="register-btn" class="btn-block btn-color">Register</button> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card2">
+                    <div class="my-auto mx-md-5 px-md-5 right">
+                        <h3 class="text-white">Social Media App</h3> <small class="text-white">Connect with the world and chat with family and friends!</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+    <script src="{% static 'js/register.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock content %}

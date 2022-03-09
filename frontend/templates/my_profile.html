@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+  <div id="my_container" style="width: 60%;margin-left: 20%;">
+
+  </div>
+
+  <input type="hidden" id="password" value="{{request.user.password}}">
+  
+  <!-- Modal -->
+  <div class="modal fade" id="SettingsModal" tabindex="-1" aria-labelledby="SettingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="d-grid gap-2">
+                <button class="btn" type="button" onclick="display_edit_profile()">Change password</button>
+                <hr>
+                <button class="btn" type="button" onclick="logout()">Logout</button>
+                <hr>
+                <button class="btn" type="button" onclick="show_login_activity({{request.user.id}})">Login Activity</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <link rel="stylesheet" href="{% static 'css/my_profile.css'%}">
+  <script src="{% static 'js/my_profile.js' %}"></script>
+{% endblock content %}

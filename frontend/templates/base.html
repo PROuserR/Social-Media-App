@@ -1,0 +1,124 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media App</title>
+    {% load static %}
+    <style>
+      body{
+        background: linear-gradient(to right, #e96443, #904e95);
+      }
+      @media (max-width: 1100px){
+      .right-col, .search-box{
+          display: none;
+      }
+      .nav-wrapper,
+      .wrapper{
+          width: 90%;
+      }
+  
+      .wrapper{
+          display: block;
+      }
+  }
+  
+  @media (max-width: 500px){
+      .nav-items .icon{
+          margin: 0 2px;
+      }
+      .post-image{
+          height: 300px;
+      }
+  }
+    </style>
+
+    <!-- CSS only -->
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</head>
+
+<body>
+  <input type="hidden" id="my_id" value="{{request.user.id}}">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- <a class="navbar-brand" href="#">Welcome {{request.user.username}}</a> -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'frontend:home' %}"><img src="{% static 'bootstrap-icons/house.svg'%}" width="30px" id="home"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'frontend:messages' %}"><img src="{% static 'bootstrap-icons/chat-dots.svg'%}" width="30px" id="messages"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'frontend:create_post' %}"><img src="{% static 'bootstrap-icons/plus-circle.svg'%}" width="30px" id="create_post"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'frontend:discover' %}"><img src="{% static 'bootstrap-icons/compass.svg'%}" width="30px" id="discover"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'frontend:my_profile' %}"><img src="{% static 'bootstrap-icons/person.svg'%}" width="30px" id="profile"></a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <input class="form-control me-2" id="search-input" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-primary" id="search-btn" onclick="search_result()" data-bs-toggle="modal" data-bs-target="#exampleModal">Search</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Users</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="users-modal">
+          ...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function search_result(){
+      fetch('http://127.0.0.1:8000/api/list_users').then((resp) => resp.json()).then(function(users){
+        search_query = document.getElementById('search-input').value
+        users_modal = document.getElementById('users-modal')
+        users_modal.innerHTML = ''
+        for(i in users){
+          if(users[i].username.includes(search_query)){
+            fetch(`http://127.0.0.1:8000/api/get_profile/${users[i].id}`).then((resp) => resp.json()).then(function(profile){
+              users_modal.innerHTML += `
+              <div>
+                      <a href="http://127.0.0.1:8000/user_profile/${profile.id}" style="text-decoration: none;">
+                      <img class="rounded-cirlce" width="30px" src="${profile.image}">
+                      </a>
+
+                      <a class="underline" href="http://127.0.0.1:8000/user_profile/${profile.id}">
+                          ${profile.username}
+                      </a>
+              </div>
+              <br>
+              `
+          })
+          }
+        }
+      })
+    }
+
+  </script>
+  <br>
+  {% block content %}
+  {% endblock content %}
+</body>
+</html>
